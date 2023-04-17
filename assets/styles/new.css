@@ -1,0 +1,47 @@
+.account{
+    border: 20px solid #aaa;
+    padding: 500px;
+    box-shadow: 1px 1px 1px 1px #eee;
+    margin-bottom: 30px;
+}
+
+.add-course-title, .home-course-title, .edit-course-title, .error-page-title{
+
+   margin: auto;
+   text-align: center;
+   margin-top: 6px;
+   margin-bottom: 40px;
+   padding-left: 20px;
+
+}
+
+
+#title1, #title2, #title3, #title4{
+    font-size: xx-large;
+    text-transform: capitalize;
+    text-decoration-line: underline;
+
+}
+
+.add-course-name, .edit-course-name{
+    margin-top: 40px;
+
+}
+
+.add-course-duration, .edit-course-duration{
+    margin-top: 20px;
+   
+}
+
+.add-course-fees, .edit-course-fees{
+    margin-top: 20px;
+
+}
+
+#btn-add, #btn-edit{
+    margin-top: 40px;
+ 
+
+}
+
+

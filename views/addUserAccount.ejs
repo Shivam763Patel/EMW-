@@ -1,0 +1,79 @@
+
+<script>
+    function accountCancel() {
+      alert('Are you sure you want to cancel')
+      document.getElementById('accountname').value = ""
+    }
+
+    
+  </script>
+<style>
+
+	.new{
+
+		width: 700px;
+
+
+	}
+</style>
+
+<section class="vh-100" style="background-color: #dee9ff;">
+
+    
+
+            <!-- <h1 class ="display-4"> Add account</h1> -->
+
+
+	<div class="container py-1 h-100">
+        
+        <ol class="breadcrumb" > 
+            <li class="breadcrumb-item"> <a href="/dashboarduser/<%= all %>"> Home </a> </li>
+            <li class="breadcrumb-item active"> Add Account </li>
+            </ol>
+		
+		<div class="new">
+	  <div class="">
+		<div class=" xl-8">
+		  <div class="card" style="border-radius: 1rem;">
+			<div class="row g-0">
+		
+			  <div class="">
+				<div class="card-body p-4 p-lg-5 text-black">
+
+			    <form method="post" action="/dashboarduser/adduseraccount/<%= all %>">	
+  
+					<!-- <div class="">
+					  <i class="fas fa-cubes fa-2x me-3" style="color: #131110;"></i>
+					  <span class="h1 fw-bold mb-4"> Add account </span>
+					</div>
+   -->
+					
+  
+					<div class="form-outline mb-4">
+                         <b> <label for="user-acc"> Add User</label> </b>
+            
+                        <input type="text" id="accountname" name="accountname" class="form-control" required="true" placeholder="Enter your username to add account">
+					</div>
+
+					<div class="pt-2 mb-4">
+
+
+					  <input type="button" class="btn btn-dark " value="cancel" id="cancel" onclick="accountCancel()"> </button>
+
+					  <button class="btn btn-dark " type="buttom" >Submit</button>
+
+
+					</div>
+		
+
+				  </form>
+  
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	</div>
+  </section>

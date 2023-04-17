@@ -1,0 +1,232 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Collapsible sidebar using Bootstrap 4</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+        integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <!-- Our Custom CSS -->
+    <style>
+        @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+
+        .container {
+            width: 1710px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fafafa;
+        }
+
+        p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1em;
+            font-weight: 300;
+            line-height: 1.7em;
+            color: #999;
+        }
+
+
+        .wrapper {
+            display: flex;
+            width: 100%;
+            align-items: stretch;
+        }
+
+
+        .account {
+            border: 3px solid #aaa;
+            padding: 10px;
+            box-shadow: 1px 1px 1px 1px #eee;
+            margin-bottom: 40px;
+            margin-left: 20px;
+
+            column-width: auto;
+            margin-top: 6px;
+            margin-bottom: 40px;
+
+        }
+
+
+        #title1,
+        #title2,
+        #title3,
+        #title4 {
+            font-size: xx-large;
+            text-transform: capitalize;
+            text-decoration-line: underline;
+
+        }
+
+        .d-inline {
+            padding-left: 2px;
+        }
+
+        .add-course-name,
+        .edit-course-name {
+            margin-top: 40px;
+
+        }
+
+        .add-course-duration,
+        .edit-course-duration {
+            margin-top: 20px;
+            padding-left: 2px;
+
+        }
+
+        .add-course-fees,
+        .edit-course-fees {
+            margin-top: 20px;
+
+        }
+
+        .col-md-3 {
+            padding-right: 2x;
+            border-right-width: 40%;
+            margin-top: 6px;
+            margin-bottom: 40px;
+            padding-left: 20px;
+            box-sizing: content-box;
+
+
+        }
+
+        #btn-add,
+        #btn-edit {
+
+            margin-top: 40px;
+
+
+        }
+
+        #my-2 {
+
+            width: fit-content;
+            padding-block-start: 10px;
+        }
+    </style>
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+        integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+        crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+        integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+        crossorigin="anonymous"></script>
+</head>
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"> <a href="/dashboarduser/<%= all %>"> Home </a> </li>
+    <li class="breadcrumb-item active"> Transaction List of member account</li>
+</ol>
+
+<body>
+
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+
+    <div class="wrapper">
+
+
+        <main>
+            <div>
+                <div>
+                    <div>
+
+                        <div id="content">
+                            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                                <div class="container-fluid">
+                                    <!--     
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <i class="fas fa-align-left"></i>
+                    <span> Menu</span>
+                </button> -->
+
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <!-- <div class="home-course-title" id="title2"> 
+    Account list new
+</div> -->
+
+
+                    <div class="container">
+
+
+                        <% if(member.length > 0) { %>
+                            <h1>Members</h1>
+                            <div class="row">
+                                <% for(let data of member) { %>
+                                    <div class="col-4">
+                                        <div class="account">
+                                            <h3 class="border-bottom  mb-3">
+                                                <%= data.accountname %> (Bal <%= data.accountBalance %>)
+                                            </h3>
+
+                                            <div class="my-2 text-center">
+                                                <a href="/dashboarduser/tr/<%= data.id %> "
+                                                    class="btn btn-outline-info"> View transaction </a>
+                                            </div>
+
+                                            <div class="my-2 text-center mb-3">
+                                                <a href="/dashboarduser/addtransactionToaccount/<%= data.id %> "
+                                                    class="btn btn-outline-primary">
+                                                    Add transaction </a>
+                                            </div>
+
+                                            <h4 class="text-center"> (<%= data.accountid.email %>) </h4>
+
+                                        </div>
+                                    </div>
+                                    <% } %>
+                            </div>
+                    </div>
+                    <% } else { %>
+                        <div> No account available </div>
+                        <% } %>
+
+                </div>
+
+            </div>
+    </div>
+    </div>
+
+    </main>
+
+</body>
+
+</html>
+
+<script>
+
+// $(document).ready(function () {
+
+// $('#sidebarCollapse').on('click', function () {
+//     $('#sidebar').toggleClass('active');
+// });
+
+// });
+</script>
