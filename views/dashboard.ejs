@@ -258,7 +258,15 @@ ul ul a {
 
 <div class="container">
 
+    <% if (result!= null) { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong><%= result %></strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
 
+  <% } %>
     <% 
      
     if(accountid.length)  { %> 

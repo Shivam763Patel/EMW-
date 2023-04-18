@@ -136,7 +136,13 @@ module.exports = {
     //       req.session.flash['success'].push = ('Updated successfully');
     //     //   req.session.flash['warning'] = [];
     //     }
-    //   },    
+    //   },   
+    
+    
+    loginPage: async (req,res) => {
+
+        return res.view("login", {  err: null , result: null });
+    },
 
     login: async (req, res, message) => {
 
@@ -153,18 +159,21 @@ module.exports = {
 
             console.log('userdata', userData)
             if (!userData) {
-                return res.status(400).json({
-                    message: 'No such user',
-                });
+                return res.view('login', {  err: 'User email not found ' });
             }
 
             console.log('login pass', password)
             console.log('userdata for login', userData.password)
             console.log('userdata', userData)
             bcrypt.compare(password, userData.password, function (err, result) {
-                console.log(result)
-
-                if (result) {
+                console.log('err::::::::', err);
+                console.log('result::::::::', result);
+                if(!result)
+                {
+                    return res.view('login', {err: 'Password does not match, try again !' });
+                }
+                else
+                {
 
                     console.log('email', userData.email)
                     const jwt_secret = process.env.JWT_KEY || 'secret'
@@ -185,7 +194,6 @@ module.exports = {
 
                     const result = { email: userData.email, username: userData.username }
                     // req.addflash('Success','Logged in to your account !')
-                    res.cookie('tokenall', token, { httpOnly: true })
 
                     // .status(200).send({
                     // //     message: 'Login successfull',
@@ -196,10 +204,12 @@ module.exports = {
                     console.log('ghfhf', userData);
                     const id = userData.id
                     console.log('hghjkgufy', id)
-                    req.addFlash('success', 'successfull logged In ');
-                    return res.redirect('/dashboarduser/' + id)
+                    // return res.view('dashboard', {err: 'Succesfull, logged-In ', });
+                    return res.cookie('tokenall', token, { httpOnly: true }).redirect('/dashboarduser/' + id)
                 }
-            })
+                
+            }
+            )
 
             //     console.log('login token:',token)
             //    // res.redirect('/login')
@@ -215,11 +225,50 @@ module.exports = {
 
         catch (err) {
             console.log(err);
-            res.status(500).json({
-                err: err.message
-            })
+            res.view('addUserByEmail', {err: 'Something went wrong !'
+        
+        });
+      
         }
 
+    },
+
+    forgotPassword: async function (req, res) {
+        const email = req.body.email
+        console.log('user email new',email)
+
+        await User.findOne({ email: email })
+            .then(result => {
+                const id = req.user.userid
+                console.log('user id new',id)
+                const password = req.body.password
+                console.log('user id new',password)
+                const confirmpassword = req.body.confirmpassword
+
+                console.log('user id new',confirmpassword)
+
+                if (password === confirmpassword) {
+                    bcrypt.hash(confirmpassword, 10, async (err, result) => {
+                        if (err) {
+                            console.log("error");
+                        }
+                        else {
+                            User.updateOne({ id: id }, { password: result })
+                                .then(result => {
+                                    console.log("updated data", result)
+                                    res.redirect('/login')
+                                })
+                        }
+
+                        
+                    })
+                }  
+            })
+           .catch(error => {
+            console.log(error);
+                    res.redirect('/login') 
+                   
+           })
     },
 
     logout: async function (req, res) {

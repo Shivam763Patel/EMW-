@@ -127,6 +127,9 @@ module.exports = {
         if (req.body.accountType == "Income") {
             newBal = amount - transactionAmount;
         } else {
+            console.log('tr wewew',transactionAmount)
+            console.log('tr wewew',amount)
+
             newBal = transactionAmount - amount;
         }
 

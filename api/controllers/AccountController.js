@@ -23,7 +23,9 @@ module.exports = {
             return res.view("dashboard", {
                 accountid: user,
                 all: userid,
-                profile: profile
+                profile: profile,
+                err: null,
+                result: 'Success'
             });
         } catch (err) {
             // .then((data)=>{
@@ -103,7 +105,7 @@ module.exports = {
 
         const data = req.user.userid;
         console.log("data user id", data);
-        return res.view("addUserByEmail", { all: id, allnew: data });
+        return res.view("addUserByEmail", { all: id, allnew: data, err: null });
 
         // await Account.find({ where: {accountid: id} }).exec(function(err, result){
         //     console.log('add account page opend',result);
@@ -130,8 +132,15 @@ module.exports = {
         console.log("user data", user);
 
         
+       if (user) {
         const useremail = await Accountbyemail.findOne({where: {emailAccountid: user.id, useremailAccountid: id}})
         console.log('user email added',useremail)
+
+        if (useremail) {
+            return res.view('addUserByEmail', { all: id, allnew: req.user.userid, err: 'User already added' });
+
+        }
+
         const usernew = user.id;
         console.log("user id for acc", usernew);
         Account.addToCollection(id, "emailAccountid", usernew).then(
@@ -143,6 +152,9 @@ module.exports = {
                 return res.redirect(`/dashboarduser/${id}`);
             }
         );
+       } else {
+        return res.view('addUserByEmail', { all: id, allnew: req.user.userid, err: 'No such email' });
+       }
         
 
     },

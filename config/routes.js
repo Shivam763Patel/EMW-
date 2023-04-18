@@ -28,13 +28,18 @@ module.exports.routes = {
   'post /signup': 'AuthController.signup',
 
 
-  'get /login': 
-  {
-    view: 'login'
-  },
+  'get /login': 'AuthController.loginPage',
   
+  'get /forgotPassword':
+  {
+
+    view: 'forgotPassword'
+  },
+
 
   'post /login': 'AuthController.login',
+
+  'post /forgotPassword': 'AuthController.forgotPassword',
 
   //dashboard
   'get /dashboarduser': { view: 'dashboard'},

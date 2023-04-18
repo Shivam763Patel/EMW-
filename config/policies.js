@@ -21,7 +21,9 @@ AuthController: {
 
   '*': 'isAuth',
   'signup': true,
-  'login': true
+  'login': true,
+  'forgotPassword': true,
+  'loginPage': true
 },
 
 UserController: {

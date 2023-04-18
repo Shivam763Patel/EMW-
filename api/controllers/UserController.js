@@ -200,13 +200,14 @@ module.exports = {
     //Post: Change User Password Page  
     changePassword: async (req,res) => {
 
-        const id = req.params.id
-        try
-        {
-            
-            const password = req.body.password
-            const confirmpassword = req.body.confirmpassword
-
+        const email = req.body.email
+    
+            await User.findOne({ email: email })
+            .then(result => {
+                const id = req.params.id
+                const password = req.body.password
+                const confirmpassword = req.body.confirmpassword
+    
         if (password === confirmpassword)
         {
             bcrypt.hash(confirmpassword, 10, async (error,result) => {
@@ -228,8 +229,9 @@ module.exports = {
             })
         }
   
-    }
-    catch(error)
+    })
+
+    .catch(error)
     {
             res.status(500).json({
                 error: error.message
