@@ -84,13 +84,13 @@ module.exports = {
 
                     console.log(token)
 
-                    //For sending email using nodemailer
+                    // // For sending email using nodemailer
                     //    await sails.helpers.sendEmail.with({
 
                     //         to: req.body.email,
                     //         subject: 'Welcome Mail',
-                    //         text:'Hello from, Expense Manager. This is a welcome mail to acknowledge you. Thank you'
-                    //     });
+                    //         text:'Hello from, Expense Manager. This is a welcome mail to acknowledge you. Also, you can access your default account when you could successfully Login for the first time. Thank you'
+                    // });
 
                     await Account.create({
                         accountid: result.id,

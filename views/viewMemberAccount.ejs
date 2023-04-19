@@ -177,13 +177,13 @@
 
 
                         <% if(member.length > 0) { %>
-                            <h1>Members</h1>
+            
                             <div class="row">
                                 <% for(let data of member) { %>
                                     <div class="col-4">
                                         <div class="account">
                                             <h3 class="border-bottom  mb-3">
-                                                <%= data.accountname %> (Bal <%= data.accountBalance %>)
+                                                <%= data.accountname %>  [Balance = <%= data.accountBalance %>]
                                             </h3>
 
                                             <div class="my-2 text-center">
