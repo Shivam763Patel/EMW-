@@ -28,25 +28,7 @@ module.exports = {
                 result: 'Success'
             });
         } catch (err) {
-            // .then((data)=>{
-            //     console.log('jgvhgvh',data);
-            //     res.view('dashboard', {  accountid: data })
-            // })
-            // .then( data => {
-            //     console.log('jgvhgvh',data);
-            //     res.view('dashboard', {  accountid: data })
-            //     // await User.find({})
-            //     //     .then(result => {
-
-            //     //         console.log("data", data)
-
-            //     //         res.render('dashboard', {  accountid: data, result: result })
-
-            //     //     })
-            //         // .catch(err => {
-            //         //     console.log(err);
-            //         // })
-            // })
+           
             console.log(err);
         }
     },
@@ -78,25 +60,7 @@ module.exports = {
                 member: accounts,
             });
         } catch (err) {
-            // .then((data)=>{
-            //     console.log('jgvhgvh',data);
-            //     res.view('dashboard', {  accountid: data })
-            // })
-            // .then( data => {
-            //     console.log('jgvhgvh',data);
-            //     res.view('dashboard', {  accountid: data })
-            //     // await User.find({})
-            //     //     .then(result => {
-
-            //     //         console.log("data", data)
-
-            //     //         res.render('dashboard', {  accountid: data, result: result })
-
-            //     //     })
-            //         // .catch(err => {
-            //         //     console.log(err);
-            //         // })
-            // })
+    
             console.log(err);
         }
     },
@@ -107,13 +71,6 @@ module.exports = {
         console.log("data user id", data);
         return res.view("addUserByEmail", { all: id, allnew: data, err: null });
 
-        // await Account.find({ where: {accountid: id} }).exec(function(err, result){
-        //     console.log('add account page opend',result);
-        //     if(err){
-        //         return err
-        //     }
-        //     return res.view('addUserAccount', {articles: result})
-        // })
     },
 
     //Add user to account by Email

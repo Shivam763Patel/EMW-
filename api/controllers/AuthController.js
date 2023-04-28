@@ -84,13 +84,13 @@ module.exports = {
 
                     console.log(token)
 
-                    // // For sending email using nodemailer
-                    //    await sails.helpers.sendEmail.with({
+                    // For sending email using nodemailer
+                       await sails.helpers.sendEmail.with({
 
-                    //         to: req.body.email,
-                    //         subject: 'Welcome Mail',
-                    //         text:'Hello from, Expense Manager. This is a welcome mail to acknowledge you. Also, you can access your default account when you could successfully Login for the first time. Thank you'
-                    // });
+                            to: req.body.email,
+                            subject: 'Welcome Mail',
+                            text:'Hello from, Expense Manager. This is a welcome mail to acknowledge you. Also, you can access your default account when you could successfully Login for the first time. Thank you'
+                    });
 
                     await Account.create({
                         accountid: result.id,
@@ -165,15 +165,12 @@ module.exports = {
             console.log('login pass', password)
             console.log('userdata for login', userData.password)
             console.log('userdata', userData)
-            bcrypt.compare(password, userData.password, function (err, result) {
-                console.log('err::::::::', err);
-                console.log('result::::::::', result);
-                if(!result)
-                {
-                    return res.view('login', {err: 'Password does not match, try again !' });
-                }
-                else
-                {
+            const ans = await bcrypt.compare(password, userData.password) 
+            console.log("user data login",ans)
+            if(ans)
+            {
+                    
+    
 
                     console.log('email', userData.email)
                     const jwt_secret = process.env.JWT_KEY || 'secret'
@@ -193,36 +190,23 @@ module.exports = {
                     console.log('email of user', email)
 
                     const result = { email: userData.email, username: userData.username }
-                    // req.addflash('Success','Logged in to your account !')
-
-                    // .status(200).send({
-                    // //     message: 'Login successfull',
-                    // //     data: result,
-                    // //     token: token,
-                    // //   });
-
+            
                     console.log('ghfhf', userData);
                     const id = userData.id
                     console.log('hghjkgufy', id)
                     // return res.view('dashboard', {err: 'Succesfull, logged-In ', });
                     return res.cookie('tokenall', token, { httpOnly: true }).redirect('/dashboarduser/' + id)
                 }
+                else
+                {
+              
+                        return res.view('login', {err: 'Password does not match, try again !' });
+                    
+                }
                 
+            
+    
             }
-            )
-
-            //     console.log('login token:',token)
-            //    // res.redirect('/login')
-
-            //         return res.status(200).json
-            //         ({ 
-            //             message: 'logged in',
-
-            //         })
-
-
-        }
-
         catch (err) {
             console.log(err);
             res.view('addUserByEmail', {err: 'Something went wrong !'

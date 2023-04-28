@@ -43,23 +43,6 @@
       
                         <form method="post" action="/dashboarduser/tr/edituserTransaction/<%= articles.id %>">  
 
-                          <!-- <div class="">
-                            <i class="fas fa-cubes fa-2x me-3" style="color: #131110;"></i>
-                            <span class="h1 fw-bold mb-4"> Add account </span>
-                          </div>
-         -->
-                          
-<!--         
-                          <div class="form-outline mb-4">
-  
-                              
-                               <b> <label for="user-acc"> Account Name</label> </b>
-                  
-                              <input type="text" id="accountName" name="accountName" value= "<%= articles.accountName %>"  class="form-control" required="true" >
-  
-                          </div> -->
-  
-                          
                           <div class="form-outline mb-4">
                              <b> <label for="detail"> Account Type </label> </b>
   
@@ -70,7 +53,7 @@
               aria-label="Default select example" 
               id="accountType" >
   
-              <% let trType = ['Income', 'Expense', 'Transfer'] %>
+              <% let trType = ['Income', 'Expense'] %>
 
               <% for (let i = 0; i < trType.length; i++) { %>
                   <% if (articles.accountType === trType[i]) { %>
@@ -133,5 +116,5 @@
             </div>
           </div>
           </div>
-        </section>
+  </section>
       
